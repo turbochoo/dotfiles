@@ -1,0 +1,78 @@
+[global_config]
+  title_font = WenQuanYi Micro Hei 10
+  title_use_system_font = False
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+  [[box]]
+    [[[child0]]]
+      fullscreen = False
+      last_active_term = a0ae8b02-d431-44a8-a9e7-1eac8b002379
+      last_active_window = True
+      maximised = False
+      order = 0
+      parent = ""
+      position = 686:20
+      size = 674, 725
+      title = turbo@devbox: ~
+      type = Window
+    [[[child1]]]
+      order = 0
+      parent = child0
+      position = 361
+      ratio = 0.501388888889
+      type = VPaned
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 337
+      ratio = 0.503736920777
+      type = HPaned
+    [[[child5]]]
+      order = 1
+      parent = child1
+      position = 337
+      ratio = 0.503736920777
+      type = HPaned
+    [[[terminal3]]]
+      command=sudo iftop
+      order = 0
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = 886e8773-ab34-40ba-88ac-76e6cca27fb8
+    [[[terminal4]]]
+      command=htop
+      order = 1
+      parent = child2
+      profile = default
+      type = Terminal
+      uuid = ba7c5e57-6aa9-4919-ab52-3fb5ae187474
+    [[[terminal6]]]
+      command=ranger
+      order = 0
+      parent = child5
+      profile = default
+      type = Terminal
+      uuid = f97d9918-755c-427c-a174-598444aea68f
+    [[[terminal7]]]
+      command=ydcv
+      order = 1
+      parent = child5
+      profile = default
+      type = Terminal
+      uuid = a0ae8b02-d431-44a8-a9e7-1eac8b002379
+[plugins]
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+    font = WenQuanYi Micro Hei 10
+  [[box]]
+    cursor_color = "#aaaaaa"

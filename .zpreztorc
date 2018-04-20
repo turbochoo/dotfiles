@@ -1,0 +1,14 @@
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'directory' \
+  'utility' \
+  'history' \
+  'completion' \
+  'git' \
+  'prompt' \
+  'syntax-highlighting' \
+  #'node' \
+  'python' \
+  #'tmux' \
+
