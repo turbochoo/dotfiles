@@ -16,9 +16,10 @@
 !.xinitrc
 !.gitignore
 !.zshrc
+!.profile
 !.xprofile
 !.Xdefaults
 !.Xresources
 !.zpreztorc
-!.vim/vimrc
+!/.vim/vimrc
 !README.md

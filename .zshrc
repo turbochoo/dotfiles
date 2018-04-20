@@ -1,9 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/utils:/usr/local/bin:$PATH
-export CC=clang
-export CXX=clang++
-export TERM="xterm-256color"
-export ANDROID_HOME=/opt/android-sdk
 source $HOME/utils/z.sh
 autoload -Uz compinit
 # Source Prezto.
