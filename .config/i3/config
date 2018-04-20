@@ -36,7 +36,7 @@ floating_minimum_size 300 x 200
 floating_maximum_size 1366 x 768
 
 # Workspace names
-#set $ws0 "0✪"
+set $ws0 "0✪"
 set $ws1 "❶ "
 set $ws2 "❷ "
 set $ws3 "❸ "
@@ -46,7 +46,7 @@ set $ws6 "❻ "
 set $ws7 "❼ "
 set $ws8 "❽ "
 set $ws9 "❾ "
-set $ws10 "❿ ☘"
+#set $ws10 "❿ ☘"
 #set $ws11 "☯"
 #set $ws12 ""
 
@@ -160,10 +160,11 @@ for_window [class="MPlayer|smplayer|Remmina"] floating enable, border none
 for_window [class="Terminator"] border none
 
 # always open some programs on specified workspace
+assign [class="Terminator"]  $ws1
 assign [class="Chromium"]  $ws2
 assign [class="Google-chrome"]  $ws3
 assign [class="URxvt|Remmina|xpad"]  $ws9
-assign [class="Gpaste-ui|electronic-wechat|Shadowsocks-Qt5|TelegramDesktop"]  $ws10
+assign [class="Gpaste-ui|electronic-wechat|Shadowsocks-Qt5|TelegramDesktop"]  $ws0
 # }}}
 
 
@@ -205,7 +206,7 @@ mode "normal" {
   bindsym 7 workspace $ws7
   bindsym 8 workspace $ws8
   bindsym 9 workspace $ws9
-  bindsym 0 workspace $ws10
+  bindsym 0 workspace $ws0
 
   # move focused container to workspace
   bindsym Shift+1 move container to workspace $ws1
@@ -217,7 +218,7 @@ mode "normal" {
   bindsym Shift+7 move container to workspace $ws7
   bindsym Shift+8 move container to workspace $ws8
   bindsym Shift+9 move container to workspace $ws9
-  bindsym Shift+0 move container to workspace $ws10
+  bindsym Shift+0 move container to workspace $ws0
 
   # Move container and focus to workspace
   bindsym Control+1 move container to workspace $ws1, workspace $ws1
@@ -229,12 +230,12 @@ mode "normal" {
   bindsym Control+7 move container to workspace $ws7, workspace $ws7
   bindsym Control+8 move container to workspace $ws8, workspace $ws8
   bindsym Control+9 move container to workspace $ws9, workspace $ws9
-  bindsym Control+0 move container to workspace $ws10, workspace $ws10
+  bindsym Control+0 move container to workspace $ws0, workspace $ws0
 
   # Moving back and forth between the last workspace
   bindsym Tab workspace back_and_forth
-  bindsym Control+Tab move container to workspace back_and_forth; workspace back_and_forth
-  bindsym Shift+Tab move container to workspace back_and_forth
+  #bindsym Control+Tab move container to workspace back_and_forth
+  #bindsym Shift+Tab move container to workspace back_and_forth
 
   # }}}
   # Back to normal
@@ -322,15 +323,15 @@ bar {
 exec --no-startup-id gpaste-client ui
 exec --no-startup-id compton -bcf -i 0.7
 exec --no-startup-id ibus-daemon -xrd
-exec --no-startup-id stardict
-exec --no-startup-id xpad
-exec --no-startup-id urxvtd -q -f -o
+exec --no-startup-id /usr/bin/stardict
+exec --no-startup-id /usr/bin/xpad
+exec --no-startup-id /usr/bin/urxvtd -q -f -o
 exec --no-startup-id $SCRIPTDIR/wallpaper &
-exec --no-startup-id xautolock -time 9 -locker $SCRIPTDIR/exit lock &
+exec --no-startup-id xautolock -time 5 -locker $SCRIPTDIR/exit lock &
 exec --no-startup-id sudo netctl start wlp3s0-Topway_6E4240
-exec --no-startup-id terminator --layout=box
+exec --no-startup-id /usr/bin/terminator --layout=box
 exec --no-startup-id /usr/bin/blueman-applet
 exec --no-startup-id /usr/bin/electronic-wechat
-exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+exec --no-startup-id /usr/bin/mpd ~/.config/mpd/mpd.conf
 
 # }}}
