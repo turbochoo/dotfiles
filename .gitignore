@@ -2,7 +2,6 @@
 *
 
 # Files currently being tracked by Git and contained in this repo
-!/.config/
 !/.config/neofetch/
 !/.config/neofetch/config.conf
 !/.config/terminator/
@@ -13,7 +12,6 @@
 !/.config/mpd/mpd.conf
 !/.config/ncmpcpp/config
 !/.config/ncmpcpp/bindings
-!/.config/i3
 !/.config/i3/**
 !.xinitrc
 !.gitignore
