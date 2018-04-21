@@ -59,11 +59,17 @@ set $ws9 "❾ "
 bindsym $mod+Return exec termite
 
 # Moving windows
-bindsym mod+h move left
-bindsym mod+l move right
-bindsym mod+j move down
-bindsym mod+k move up
+bindsym $mod+h move left
+bindsym $mod+l move right
+bindsym $mod+j move down
+bindsym $mod+k move up
 bindsym $alt+space move position mouse
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # Window stuff
 # kill focused window
@@ -73,11 +79,6 @@ bindsym $mod+b exec i3-msg border toggle
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # Move window to scratchpad
 bindsym $mod+Shift+minus move scratchpad, mode "default"
