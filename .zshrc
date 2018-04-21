@@ -1,3 +1,4 @@
+source $HOME/.profile
 source $HOME/utils/z.sh
 autoload -Uz compinit
 # Source Prezto.
