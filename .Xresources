@@ -41,9 +41,9 @@ URxvt.matcher.button:      1
 URxvt.cutchars:            '"'()*<>[]{|}
 !
 ! Appearance
-URxvt*font:  xft:DejaVu Sans Mono:size=12,xft:WenQuanYi Micro Hei Mono:size=12:minispace=true
-URxvt*boldFont:  xft:WenQuanYi Micro Hei Mono:size=12:minispace=true,xft:DejaVu Sans Mono for Powerline:size=12
-URxvt*letterSpace: -1
+URxvt*font: xft:WenQuanYi Micro Hei Mono:pixesize=20,xft:Sauce Code Pro Nerd Font Mono:pixesize=18
+URxvt*boldFont:  xft:WenQuanYi Micro Hei Mono:pixesize=18:minspace=True
+URxvt*letterSpace:-1 
 
 ! Cursor
 URxvt.cursorColor: #DCDCCC
@@ -101,12 +101,12 @@ xterm*highlightSelection: true
 xterm*termName:  xterm-256color
 
 
-! Appearance
+! Appearance 
 xterm*renderFont: true
-xterm*faceName: SauceCodePro Nerd Mono:size=12
+xterm*faceName: xft:Sauce Code Pro Nerd Font:size=12
 xterm*faceNameDoublesize: xft:WenQuanYi Micro Hei Mono:size=12
 xterm*wideChars: true
-xterm*wideFont: SauceCodePro Nerd Mono:size=12
+xterm*wideFont: xft:WenQuanYi Micro Hei Mono:size=12
 
 ! Zenburn
 xterm*background:  #3f3f3f

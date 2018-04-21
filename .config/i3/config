@@ -165,7 +165,7 @@ for_window [class="Terminator"] border none
 assign [class="Terminator"]  $ws1
 assign [class="Chromium"]  $ws2
 assign [class="Google-chrome"]  $ws3
-assign [class="URxvt|Remmina|xpad"]  $ws9
+assign [class="Remmina|xpad"]  $ws9
 assign [class="Gpaste-ui|electronic-wechat|Shadowsocks-Qt5|TelegramDesktop"]  $ws0
 # }}}
 
