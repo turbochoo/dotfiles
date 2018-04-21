@@ -56,14 +56,14 @@
       type = Terminal
       uuid = ba7c5e57-6aa9-4919-ab52-3fb5ae187474
     [[[terminal6]]]
-      command=ranger
+      command=ydcv
       order = 0
       parent = child5
       profile = default
       type = Terminal
       uuid = f97d9918-755c-427c-a174-598444aea68f
     [[[terminal7]]]
-      command=ydcv
+      command=
       order = 1
       parent = child5
       profile = default
