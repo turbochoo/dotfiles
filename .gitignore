@@ -1,16 +1,11 @@
 # Ignore files not tracked by Git
-*
+/*
 
 # Files currently being tracked by Git and contained in this repo
-!/.config/qutebrowser/
 !/.config/qutebrowser/config.py
-!/.config/neofetch/
 !/.config/neofetch/config.conf
-!/.config/terminator/
 !/.config/terminator/config
-!/.config/termite/
 !/.config/termite/config
-!/.config/mpd/
 !/.config/mpd/mpd.conf
 !/.config/ncmpcpp/config
 !/.config/ncmpcpp/bindings
