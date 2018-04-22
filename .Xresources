@@ -34,7 +34,7 @@ URxvt.perl-ext:	           default,matcher,searchable-scrollback,tabbed,clipboar
 URxvt.keysym.M-u:          perl:url-select:select_next
 URxvt.keysym.M-Escape:     perl:keyboard-select:activate
 URxvt.keysym.M-s:          perl:keyboard-select:search
-URxvt.url-select.launcher: /usr/bin/min
+URxvt.url-select.launcher: /usr/bin/qutebrowser --target tab
 !URxvt.iconFile:           utilities-terminal.svg
 URxvt.matcher.button:      1
 ! Catch ugly URLs
