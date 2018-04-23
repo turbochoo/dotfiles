@@ -27,6 +27,7 @@ client.urgent           #FAC863     #FAC863     #000000     #CDD3DE    #FAC863
 focus_on_window_activation focus
 force_display_urgency_hint 200 ms
 
+
 # Do not follow the mouse
 focus_follows_mouse no
 
@@ -37,19 +38,20 @@ floating_minimum_size 300 x 200
 floating_maximum_size 1366 x 768
 
 # Workspace names
-set $ws0 "0✪"
-set $ws1 "❶ "
-set $ws2 "❷ "
-set $ws3 "❸ "
-set $ws4 "❹ "
-set $ws5 "❺ "
-set $ws6 "❻ "
-set $ws7 "❼ "
-set $ws8 "❽ "
-set $ws9 "❾ "
-#set $ws10 "❿ ☘"
-#set $ws11 "☯"
-#set $ws12 ""
+
+set $ws0 "☯→ "
+set $ws1 "❶→ "
+set $ws2 "❷→ "
+set $ws3 "❸→ "
+set $ws4 "❹→ "
+set $ws5 "❺→ "
+set $ws6 "❻→ "
+set $ws7 "❼→ "
+set $ws8 "❽→ "
+set $ws9 "❾→ "
+#set $ws10 "❿→ ☘"
+#set $ws11 "→ "
+#set $ws12 "→ "
 
 # }}}
 
@@ -77,14 +79,69 @@ bindsym $mod+Right focus right
 bindsym $mod+Shift+q kill
 # toggle border
 bindsym $mod+b exec i3-msg border toggle
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+p layout toggle split
+bindsym $mod+d layout default
+bindsym $mod+a layout toggle all
+# Toggle tiling / floating
+bindsym $mod+f floating toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+x fullscreen toggle
+# Change focus between tiling / floating windows
+bindsym $mod+m focus mode_toggle
 
 # Move window to scratchpad
 bindsym $mod+Shift+minus move scratchpad, mode "default"
 # Get the scratchpad window
 bindsym $mod+minus scratchpad show, mode "default"
+
+# Workspace handling {{{
+  # switch to workspace
+  bindsym $mod+1 workspace $ws1
+  bindsym $mod+2 workspace $ws2
+  bindsym $mod+3 workspace $ws3
+  bindsym $mod+4 workspace $ws4
+  bindsym $mod+5 workspace $ws5
+  bindsym $mod+6 workspace $ws6
+  bindsym $mod+7 workspace $ws7
+  bindsym $mod+8 workspace $ws8
+  bindsym $mod+9 workspace $ws9
+  bindsym $mod+0 workspace $ws0
+
+  # move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace $ws1
+  bindsym $mod+Shift+2 move container to workspace $ws2
+  bindsym $mod+Shift+3 move container to workspace $ws3
+  bindsym $mod+Shift+4 move container to workspace $ws4
+  bindsym $mod+Shift+5 move container to workspace $ws5
+  bindsym $mod+Shift+6 move container to workspace $ws6
+  bindsym $mod+Shift+7 move container to workspace $ws7
+  bindsym $mod+Shift+8 move container to workspace $ws8
+  bindsym $mod+Shift+9 move container to workspace $ws9
+  bindsym $mod+Shift+0 move container to workspace $ws0
+
+  # Move container and focus to workspace
+  bindsym $mod+Control+1 move container to workspace $ws1, workspace $ws1
+  bindsym $mod+Control+2 move container to workspace $ws2, workspace $ws2
+  bindsym $mod+Control+3 move container to workspace $ws3, workspace $ws3
+  bindsym $mod+Control+4 move container to workspace $ws4, workspace $ws4
+  bindsym $mod+Control+5 move container to workspace $ws5, workspace $ws5
+  bindsym $mod+Control+6 move container to workspace $ws6, workspace $ws6
+  bindsym $mod+Control+7 move container to workspace $ws7, workspace $ws7
+  bindsym $mod+Control+8 move container to workspace $ws8, workspace $ws8
+  bindsym $mod+Control+9 move container to workspace $ws9, workspace $ws9
+  bindsym $mod+Control+0 move container to workspace $ws0, workspace $ws0
+	
+  # Moving back and forth between the last workspace
+  workspace_auto_back_and_forth yes
+  bindsym $mod+Tab workspace back_and_forth
+  bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+    
+  # }}}
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -132,12 +189,14 @@ bindsym XF86Tools exec --no-startup-id xterm -e "sudo wifi-menu wlp3s0"
 # Enter normal mode
 bindsym Insert mode "normal"
 
+
 #bindsym XF86Calculator exec xcalc
 # Emergency: Turn off builtin display
 # (Sometimes the display is active but still dead after waking up from suspend)
 #bindsym $mod+XF86Display exec --no-startup-id "xrandr --output eDP-1 --off"
 # Emergency: Turn on all connected displays
 #bindsym XF86Display exec --no-startup-id "xrandr --auto"
+
 
 # }}}
 
@@ -178,68 +237,13 @@ mode "normal" {
     # Split in vertical orientation
     bindsym v split h
 
-    # Change container layout (stacked, tabbed, toggle split)
-    bindsym Shift+s layout stacking
-    bindsym Shift+t layout tabbed
-    bindsym Shift+p layout toggle split
-    bindsym Shift+d layout default
-    bindsym Shift+a layout toggle all
-    # Toggle tiling / floating
-    bindsym Shift+f floating toggle
-    # Change focus between tiling / floating windows
-    bindsym Shift+m focus mode_toggle
-
     # Focus the parent container
     bindsym p focus parent
     # Focus the child container
     bindsym n focus child
 
   #}}}
-
-  # Workspace handling {{{
-  # switch to workspace
-  bindsym 1 workspace $ws1
-  bindsym 2 workspace $ws2
-  bindsym 3 workspace $ws3
-  bindsym 4 workspace $ws4
-  bindsym 5 workspace $ws5
-  bindsym 6 workspace $ws6
-  bindsym 7 workspace $ws7
-  bindsym 8 workspace $ws8
-  bindsym 9 workspace $ws9
-  bindsym 0 workspace $ws0
-
-  # move focused container to workspace
-  bindsym Shift+1 move container to workspace $ws1
-  bindsym Shift+2 move container to workspace $ws2
-  bindsym Shift+3 move container to workspace $ws3
-  bindsym Shift+4 move container to workspace $ws4
-  bindsym Shift+5 move container to workspace $ws5
-  bindsym Shift+6 move container to workspace $ws6
-  bindsym Shift+7 move container to workspace $ws7
-  bindsym Shift+8 move container to workspace $ws8
-  bindsym Shift+9 move container to workspace $ws9
-  bindsym Shift+0 move container to workspace $ws0
-
-  # Move container and focus to workspace
-  bindsym Control+1 move container to workspace $ws1, workspace $ws1
-  bindsym Control+2 move container to workspace $ws2, workspace $ws2
-  bindsym Control+3 move container to workspace $ws3, workspace $ws3
-  bindsym Control+4 move container to workspace $ws4, workspace $ws4
-  bindsym Control+5 move container to workspace $ws5, workspace $ws5
-  bindsym Control+6 move container to workspace $ws6, workspace $ws6
-  bindsym Control+7 move container to workspace $ws7, workspace $ws7
-  bindsym Control+8 move container to workspace $ws8, workspace $ws8
-  bindsym Control+9 move container to workspace $ws9, workspace $ws9
-  bindsym Control+0 move container to workspace $ws0, workspace $ws0
-
-  # Moving back and forth between the last workspace
-  bindsym Tab workspace back_and_forth
-  bindsym Control+Tab move container to workspace back_and_forth
-  bindsym Shift+Tab move container to workspace back_and_forth
-
-  # }}}
-
+  
   # back to default : Home or Enter or Escape
   bindsym Home mode "default"
   bindsym Return mode "default"
