@@ -1,6 +1,8 @@
 # Encoding to use for the editor.
 c.url.searchengines = {'DEFAULT': 'https://www.bing.com/search?q={}'}
-c.url.default_page = 'https://legacy.gitbook.com/@yeasy' 
+c.url.default_page = 'https://cn.bing.com' 
+c.url.start_pages = 'https://cn.bing.com' 
+
 c.content.headers.user_agent = 'Chrome/19.0.1084.52'
 # Type: Encoding
 c.editor.encoding = 'utf-8'

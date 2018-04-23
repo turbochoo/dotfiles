@@ -15,6 +15,7 @@
 !/.config/ncmpcpp/config
 !/.config/ncmpcpp/bindings
 !/.config/i3/**
+!/.config/i3/Xmodmaprc
 !.xinitrc
 !.zshrc
 !.profile

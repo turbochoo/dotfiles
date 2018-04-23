@@ -2,7 +2,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 #{{{ General settings
-
+# Mod3 remap to Caps_lock using xmodmap ~/.config/i3/Xmodmaprc
+# reset setxkbmap -layout us
 set $alt Mod1
 set $mod Mod4
 set $SCRIPTDIR $HOME/.config/i3/i3scripts
@@ -123,7 +124,6 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10  # decrease screen brightn
 # start dmenu (a program launcher) rofi
 bindsym XF86LaunchA exec --no-startup-id rofi -show window
 bindsym XF86Explorer exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
-
 bindsym Print exec scrot -u -e 'mv $f ~/Pictures/scrot'
 bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/scrot'
 
@@ -297,11 +297,11 @@ mode "$mode_move" {
 
 # Statusbar {{{
 # show CapsLock state in statusbar
-set $mode_caps 
-bindsym Caps_Lock mode "$mode_caps"
-mode "$mode_caps" {
-    bindsym Caps_Lock mode "default"
-}
+#set $mode_caps 
+#bindsym Caps_Lock mode "$mode_caps"
+#mode "$mode_caps" {
+#    bindsym Caps_Lock mode "default"
+#}
 
 bar {
     position bottom
