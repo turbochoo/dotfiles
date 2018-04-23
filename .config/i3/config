@@ -326,7 +326,7 @@ bar {
 #{{{ auto start
 
 exec --no-startup-id gpaste-client ui
-exec --no-startup-id compton -bcf -i 0.7
+exec --no-startup-id compton -bcf -i 0.8
 exec --no-startup-id ibus-daemon -xrd
 exec --no-startup-id /usr/bin/stardict
 exec --no-startup-id /usr/bin/xpad
