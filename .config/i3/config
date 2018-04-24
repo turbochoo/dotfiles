@@ -301,11 +301,11 @@ mode "$mode_move" {
 
 # Statusbar {{{
 # show CapsLock state in statusbar
-#set $mode_caps 
-#bindsym Caps_Lock mode "$mode_caps"
-#mode "$mode_caps" {
-#    bindsym Caps_Lock mode "default"
-#}
+set $mode_caps 
+bindsym Caps_Lock mode "$mode_caps"
+mode "$mode_caps" {
+    bindsym Caps_Lock mode "default"
+}
 
 bar {
     position bottom
@@ -325,7 +325,7 @@ bar {
 
 #{{{ auto start
 
-exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
+#exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
 exec --no-startup-id gpaste-client ui
 exec --no-startup-id compton -bcf -i 0.8
 exec --no-startup-id /usr/bin/stardict
