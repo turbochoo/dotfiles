@@ -9,7 +9,6 @@ export QT_IM_MODULE="ibus"
 ibus-daemon -xrd
 
 userresources=$HOME/.Xresources
-usermodmap=$HOME/.config/i3/Xmodmaprc
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
@@ -28,10 +27,6 @@ fi
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 
-fi
-
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
 fi
 
 # start some nice programs
