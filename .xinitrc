@@ -1,5 +1,13 @@
 #!/bin/sh
 
+export LANG=en_US.UTF-8
+export LC_CTYPE=zh_CN.UTF-8
+
+export XMODIFIERS=@im=IBUS
+export GTK_IM_MODULE="ibus"
+export QT_IM_MODULE="ibus"
+ibus-daemon -xrd
+
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.config/i3/Xmodmaprc
 sysresources=/etc/X11/xinit/.Xresources
