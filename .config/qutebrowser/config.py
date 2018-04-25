@@ -46,7 +46,7 @@ c.fonts.messages.warning = '10pt WenQuanYi Micro Hei Mono'
 # Default monospace fonts. Whenever "monospace" is used in a font
 # setting, it's replaced with the fonts listed here.
 # Type: Font
-c.fonts.monospace = '"WenQuanYi Micro Hei Mono", "Monofur for Powerline", Monospace, "DejaVu Sans Mono", Monaco, "Bitstream Vera Sans Mono", "Andale Mono", "Courier New", Courier, "Liberation Mono", monospace, Fixed, Consolas, Terminal'
+c.fonts.monospace = '"WenQuanYi Micro Hei Mono","DejaVu Sans Mono", monospace'
 
 # Font used for prompts.
 # Type: Font
