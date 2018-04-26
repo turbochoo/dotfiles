@@ -89,7 +89,7 @@ HIST_STAMPS="mm/dd/yyyy"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs battery)
 
-alias ll='ls -l'
+alias ll='ls -ahl'
 alias la='ls -a'
 alias vi='vim'
 alias svi='sudo vim'
