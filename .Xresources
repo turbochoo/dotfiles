@@ -43,7 +43,7 @@ URxvt.cutchars:            '"'()*<>[]{|}
 ! Appearance
 URxvt*font: xft:WenQuanYi Micro Hei Mono:pixesize=20,xft:Sauce Code Pro Nerd Font Mono:pixesize=18
 URxvt*boldFont:  xft:WenQuanYi Micro Hei Mono:pixesize=18:minspace=True
-URxvt*letterSpace:-1 
+URxvt*letterSpace:-1
 
 ! Cursor
 URxvt.cursorColor: #DCDCCC
@@ -101,12 +101,11 @@ xterm*highlightSelection: true
 xterm*termName:  xterm-256color
 
 
-! Appearance 
+! Appearance
 xterm*renderFont: true
-xterm*faceName: xft:Sauce Code Pro Nerd Font:size=12
-xterm*faceNameDoublesize: xft:WenQuanYi Micro Hei Mono:size=12
-xterm*wideChars: true
-xterm*wideFont: xft:WenQuanYi Micro Hei Mono:size=12
+xterm*faceName: Sauce Code Pro Nerd Font
+xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono Light
+xterm*faceSize:12
 
 ! Zenburn
 xterm*background:  #3f3f3f
@@ -142,7 +141,7 @@ rofi.opacity:                        100
 rofi.width:                          50
 rofi.lines:                          8
 rofi.columns:                        1
-rofi.font:                           WenQuanYi Micro Hei Mono 11 
+rofi.font:                           WenQuanYi Micro Hei Mono 11
 rofi.color-enabled: true
 rofi.color-window: #393939, #393939, #268bd2
 rofi.color-normal: #393939, #ffffff, #393939, #268bd2, #ffffff
@@ -151,9 +150,9 @@ rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffc39c
 
 ! }}}
 
-!{{{ x11-ssh-askpass 
+!{{{ x11-ssh-askpass
 
-x11-ssh-askpass*font:                   monospace 
+x11-ssh-askpass*font:                   monospace
 x11-ssh-askpass*background:             #000000
 x11-ssh-askpass*foreground:             #ffffff
 x11-ssh-askpass.Button*background:      #000000
@@ -253,4 +252,3 @@ xpdf*viKeys: on
 ! --- gv {{{1
 ! -----------------------------------------------------------------------------
 gv*antialias: true
-
