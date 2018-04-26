@@ -209,12 +209,11 @@ for_window [window_role="menu"] floating enable
 for_window [window_role=".*Setting.*|.*Preference.*"] floating enable,border none
 for_window [class="ROOT"] floating enable
 
-for_window [class="urxvt|XTerm|Termite|XCalc|XFontSel"] floating enable, border none
+for_window [class="Urxvt|XTerm|Termite|XCalc|XFontSel"] floating enable, border none
 for_window [class="electronic-wechat|Shadowsocks-Qt5"] floating enable, border none
 for_window [class="Google-chrome|Chromium|Geany"] stacking, border none
 for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
-for_window [class="URxvt"] focus child,floating enable, border none
 for_window [class="xpad|Blueman-manager|Lxappearance"] floating enable
 for_window [class="MPlayer|smplayer|Remmina|Stardict"] floating enable, border none
 for_window [class="feh|imv|Peek|Cheese"] floating enable, border none
