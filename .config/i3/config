@@ -216,7 +216,7 @@ for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
 for_window [class="URxvt"] focus child,floating enable, border none
 for_window [class="xpad|Blueman-manager|Lxappearance"] floating enable
-for_window [class="MPlayer|smplayer|Remmina"] floating enable, border none
+for_window [class="MPlayer|smplayer|Remmina|Stardict"] floating enable, border none
 for_window [class="Terminator"] border none
 
 # always open some programs on specified workspace
