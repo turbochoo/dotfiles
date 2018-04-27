@@ -49,13 +49,12 @@ scrollback_lines = 10000
 #background = #3f3f3f
 
 # 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.8)
+background = rgba(63, 63, 63, 1)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f
 
 # Colors from color0 to color254 can be set
-color0 = #3f3f3f
 color1 = #705050
 color2 = #60b48a
 color3 = #dfaf8f
