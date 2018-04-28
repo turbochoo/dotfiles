@@ -1,11 +1,6 @@
 source $HOME/.profile
-source $HOME/utils/z.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 autoload -Uz compinit
-# Source Prezto.
-# may try to use zplug tool to manage plugin
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
 
 # Show OS info when opening a new terminal
 neofetch
@@ -85,12 +80,16 @@ ENABLE_CORRECTION="true"
 # Command execution time stamp shown in the history command output.
 HIST_STAMPS="mm/dd/yyyy"
 
+# Plugins to load
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
 # Prompt elements
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir virtualenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time battery)
 
-alias ll='ls -ahl'
-alias la='ls -a'
+alias ll='colorls -dla'
+alias ls='colorls'
 alias vi='vim'
 alias svi='sudo vim'
 alias grep='grep --color=auto'
@@ -106,3 +105,4 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --cache=$HOME/.npm/.cache/cnpm \
   --disturl=https://npm.taobao.org/dist \
   --userconfig=$HOME/.cnpmrc"
+

@@ -15,19 +15,11 @@ Plug 'junegunn/vim-easy-align'
 " Visualize and traverse your undo tree
 Plug 'sjl/gundo.vim'
 
-
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 	
 Plug 'scrooloose/syntastic'
 Plug 'morhetz/gruvbox'
-" LaTeX editing
-"Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'lervag/vimtex'
-" Status bar mods
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 "editor 
 " Tab completion
@@ -43,8 +35,27 @@ Plug 'honza/vim-snippets'
 " file manager
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+
+
+"{{{ airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+"}}}
+
+"{{{ ctrlp
 " A buffer/file/mru/tag explorer with fuzzy text matching
 Plug 'kien/ctrlp.vim'
+"}}}
+
+"{{{ gitgutter
+"shows a git diff in the 'gutter' (sign column) 
+Plug 'airblade/vim-gitgutter'
+" }}}
+
+"{{{ LaTeX 
+Plug 'lervag/vimtex'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+"}}} 
 
 " c/c++
 " Initialize plugin system
@@ -57,6 +68,17 @@ call plug#end()
 ":GundoToggle
 
 " }}}
+
+" ctrlp {{{
+set wildignore+=*/tmp/*,*.swp,*.zip,*.tar.gz 
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(out|o|mp4|pdf|epub|chm|png|jpg|gif)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+let g:ctrlp_working_path_mode = 'ra'
+"}}}
 
 " airline {{{
 let g:airline_powerline_fonts = 1
@@ -79,19 +101,7 @@ let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.paste = 'Þ'
 "let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
-
 " }}}
-
-" ctrlp {{{
-set wildignore+=*/tmp/*,*.swp,*.zip,*.tar.gz 
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(out|o|mp4|pdf|epub|chm|png|jpg|gif)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_working_path_mode = 'ra'
-"}}}
 
 "syntastic {{{
 let g:syntastic_error_symbol='✗'
