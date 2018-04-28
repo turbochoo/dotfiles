@@ -4,60 +4,55 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Markdown syntax highlighting for Vim	
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
-  
-"alignment
-Plug 'junegunn/vim-easy-align'
-
-" Visualize and traverse your undo tree
-Plug 'sjl/gundo.vim'
-
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-	
-Plug 'scrooloose/syntastic'
+" {{{ colorstheme 
 Plug 'morhetz/gruvbox'
+" }}}
 
-"editor 
-" Tab completion
-Plug 'ervandew/supertab'
-
-" EasyMotion - Allows <leader><leader>(b|e) to jump to (b)eginning or (end)
-" of words.
-Plug 'easymotion/vim-easymotion'
-
+"{{{ editor 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-repeat'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-surround'
+
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+" }}}
 
 " file manager
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
-
-"{{{ airline
+"{{{ bar status 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "}}}
 
-"{{{ ctrlp
-" A buffer/file/mru/tag explorer with fuzzy text matching
-Plug 'kien/ctrlp.vim'
-"}}}
 
-"{{{ gitgutter
+" Visualize and traverse your undo tree
+Plug 'sjl/gundo.vim'
 "shows a git diff in the 'gutter' (sign column) 
 Plug 'airblade/vim-gitgutter'
-" }}}
+" A buffer/file/mru/tag explorer with fuzzy text matching
+Plug 'kien/ctrlp.vim'
 
-"{{{ LaTeX 
+" language support
+" {{{ LaTeX 
 Plug 'lervag/vimtex'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
-"}}} 
+" }}} 
 
-" c/c++
+" {{{ Markdown syntax highlighting for Vim	
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+" }}}
+
+
 " Initialize plugin system
 call plug#end()
 
@@ -67,6 +62,20 @@ call plug#end()
 " gundo{{{
 ":GundoToggle
 
+" }}}
+
+" {{{ incsearch fuzzy easymotion
+	function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzyword#converter()],
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 " }}}
 
 " ctrlp {{{
@@ -101,36 +110,27 @@ let g:airline_symbols.paste = 'ρ'
 "let g:airline_symbols.paste = 'Þ'
 "let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
+
 " }}}
 
 "syntastic {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_enable_highlighting = 1
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_php_checkers = ['php']
 " }}}
-
-"配合使用增强版命令重复
-"for repeat -> enhance surround.vim, . to repeat command
-" surround {{{
-"命令 cs ds yss
-" helps delete and surround brackets
-"ds(delete surroundings),
-"cs(change surroundings),
-"cst(change surroundings to ")
-"ys(yank surround)
-"ysw(ys with ) 光标下位置开始
-"ysiw(ys it with ) 单词
-" }}}
-
-" colorscheme
-set background=dark
-colorscheme gruvbox
-let g:gruvbox_contrast_dark="hard"
-
-
-"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 " Ultisnips {{{
 let g:UltiSnipsExpandTrigger = '<TAB>'
@@ -138,6 +138,18 @@ let g:UltiSnipsExpandTrigger = '<TAB>'
 let g:UltiSnipsEditSplit='vertical'
 let g:UltiSnipsSnippetsDir=$HOME.'/.vim/plugged/vim-snippets/UltiSnips'
 
+" }}}
+
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+" {{{ markdown
+nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
+" }}}
+
+" {{{ colorscheme
+set background=dark
+colorscheme gruvbox
+let g:gruvbox_contrast_dark="hard"
 " }}}
 
 "---generel configuration---

@@ -88,8 +88,11 @@ source $ZSH/oh-my-zsh.sh
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir virtualenv vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(background_jobs time battery)
 
-alias ll='colorls -dla'
+alias lsd='colorls -dla'
+alias lsf='colorls -fla'
 alias ls='colorls'
+alias l='colorls'
+alias ll='colorls -la'
 alias vi='vim'
 alias svi='sudo vim'
 alias grep='grep --color=auto'
