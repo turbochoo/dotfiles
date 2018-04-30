@@ -58,7 +58,6 @@ set $ws9 "❾→ "
 
 # start a terminal
 bindsym $mod+Return exec urxvtc
-#bindsym $mod+Return exec termite
 
 # Moving windows
 bindsym $mod+h move left
@@ -179,7 +178,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10  # decrease screen brightn
 
 # start dmenu (a program launcher) rofi
 bindsym XF86LaunchA exec --no-startup-id rofi -show window
-bindsym XF86Explorer exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+bindsym XF86Search exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+bindsym XF86Explorer exec --no-startup-id termite
+
 bindsym Print exec scrot -u -e 'mv $f ~/Pictures/scrot'
 bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/scrot'
 
@@ -216,7 +217,7 @@ for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
 for_window [class="xpad|Blueman-manager|Lxappearance"] floating enable
 for_window [class="MPlayer|smplayer|Remmina|Stardict"] floating enable, border none
-for_window [class="feh|imv|Peek|Cheese"] floating enable, border none
+for_window [class="feh|imv|Peek|Cheese|Zeal"] floating enable, border none
 for_window [class="Terminator"] border none
 
 # always open some programs on specified workspace

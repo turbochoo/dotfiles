@@ -14,7 +14,6 @@ Plug 'morhetz/gruvbox'
 
 " navigation{{{
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'wesleyche/SrcExpl'
 Plug 'majutsushi/tagbar'
@@ -55,6 +54,7 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 
 " }}}
 
+
 " language support {{{
 
 " html/css {{{
@@ -64,6 +64,12 @@ Plug 'mattn/emmet-vim'
 " c/c++
 Plug 'roxma/ncm-clang'
 Plug 'Rip-Rip/clang_complete'
+" go 
+Plug 'fatih/vim-go'   
+" gdb
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'idanarye/vim-vebugger'
 " java
 Plug 'artur-shaik/vim-javacomplete2'
 
@@ -98,19 +104,20 @@ Plug 'rhysd/nyaovim-markdown-preview'
 " }}}
 
 " utils{{{
-
 Plug 'sjl/gundo.vim'
-" paste
-Plug 'vim-scripts/YankRing.vim'
 " scratchpad
 Plug 'metakirby5/codi.vim'
-
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
 " }}}
 
 " misc {{{
 Plug 'kassio/neoterm'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-dispatch'
+" Testing Vimscript with Vader.vim
+Plug 'junegunn/vader.vim'
+Plug 'thinca/vim-quickrun'
 " }}}
 
 " Initialize plugin system
@@ -118,11 +125,16 @@ call plug#end()
 
 "---package configuration---
 
+" vebugger {{{
+	
+" }}}
+
 " nvim completion manager {{{
 let g:python3_host_prog="python3"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "}}}
+
 " UltiSnips with ncm {{{
 "
 let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
@@ -146,7 +158,7 @@ let g:clang_library_path='/lib/libclang.so.6.0'
     " ncm-clang is auto detecting compile_commands.json and .clang_complete
     " file
     let g:clang_auto_user_options = ''
-
+	let g:clang_snippets_engine = 'ultisnips'
     func WrapClangGoTo()
         let cwd = getcwd()
         let info = ncm_clang#compilation_info()
@@ -164,6 +176,37 @@ let g:clang_library_path='/lib/libclang.so.6.0'
     autocmd FileType c,cpp nnoremap <buffer> gd :call WrapClangGoTo()<CR>
 "}}}
 
+" Quickrun Setting
+let g:quickrun_config = {
+            \   "_" : {
+            \       "outputter" : "error",
+            \       "outputter/error/success"   : "buffer",
+            \       "outputter/error/error"     : "quickfix",
+            \       "outputter/buffer/close_on_empty" : 1,
+            \       "hook/time/enable" : 1
+            \   },
+            \   "cpp" : {
+			\		"command": "g++",
+            \       "cmdopt" : "-std=c++11 -Wall -pedantic"
+            \   },
+			\	"c":{
+			\		"command": "gcc",
+			\		"cmdopt": "-g"
+			\	},
+            \}
+
+let g:quickrun_no_default_key_mappings = 1
+map <F5> :QuickRun<CR>
+
+"c/c++ {{{
+autocmd FileType Makefile setlocal sw=2 ts=2 noexpandtab
+
+"}}}
+
+"javacomplete2 {{{
+	autocmd FileType java setlocal omnifunc=javacomplete#Complete
+"}}}
+
 " jedi-vim {{{
 let g:jedi#auto_initialization = 1
 let g:jedi#use_tabs_not_buffers = 1
@@ -178,9 +221,9 @@ let g:jedi#rename_command = "<leader>r"
 
 " }}}
 
-" ALE {{{ 
+" ALE {{{✘ ✗
 "let g:ale_sign_error = '✖'
-let g:ale_sign_error = '✗'
+let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
@@ -212,7 +255,7 @@ noremap <leader>f :ALEFix<cr>
 
 " }}}
 
-" {{{ incsearch fuzzy easymotion
+" incsearch fuzzy easymotion{{{ 
 	function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
   \   'converters': [incsearch#config#fuzzyword#converter()],
@@ -237,11 +280,15 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_working_path_mode = 'ra'
 "}}}
 
-" {{{ markdown
+" markdown {{{
 nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
 " }}}
 
-"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+" gist {{{
+let g:gist_detect_filetype = 1
+let g:gist_post_private = 1
+let g:gist_post_anonymous = 0
+" }}}
 
 " neoterm{{{
 "let g:neoterm_size = 15
@@ -268,6 +315,7 @@ nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
 " airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme="zenburn"
+" enable tab
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
@@ -282,32 +330,108 @@ let g:airline_right_sep = '«'
 " }}}
 
 " nerdtree {{{ 
-let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_console_startup = 0
 let NERDChristmasTree=1
 let NERDTreeShowHidden=0
 let NERDTreeQuitOnOpen=1 
 let NERDTreeShowBookmarks=1 
 let NERDTreeDirArrows=1 
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn','\.bzr']
-"map <F8> :NERDTreeToggle<CR>
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
-nnoremap tp :tabprev<CR>
-nnoremap tn :tabnext<CR>
-nnoremap tf :tabfirst<CR>
-nnoremap tl :tablast<CR>
-
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <C-k> :bn<cr>
-map <C-j> :bp<cr>
-
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', 
+			\ '\.swp$', '\.git', '\.hg', '\.svn','\.bzr',
+			\ '\.out']
+map <F8> :NERDTreeToggle<CR>
 " }}}
+
+" tab & pane {{{
+" command reference
+
+" Move to the previous buffer with "gp"
+nnoremap gp :bp<CR>
+" Move to the next buffer with "gn"
+nnoremap gn :bn<CR>
+" List all possible buffers with "gl"
+nnoremap gl :ls<CR>
+" List all possible buffers with "gb" and accept a new buffer argument [1]
+nnoremap gb :ls<CR>:b
+
+"E784: Cannot close last tab page
+"nnoremap <leader>w :tabclose<CR>
+"You can specify the new split height by prefixing with a number:10sp
+"Create a vertical split using :vsp and horizontal with :sp
+"Max out the height of the current split
+"ctrl + w _
+"Max out the width of the current split
+"ctrl + w |
+"Normalize all split sizes, which is very handy when resizing terminal
+"ctrl + w =
+"Swap top/bottom or left/right split
+"Ctrl+W R
+"Break out current window into a new tabview
+"Ctrl+W T
+"Close every window in the current tabview but the current one
+"Ctrl+W o
+
+set splitbelow
+set splitright
+
+"switch focus between panes(buffers)
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"panel to tab
+function! MoveToPrevTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() != 1
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabprev
+    endif
+    sp
+  else
+    close!
+    exe "0tabnew"
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+
+function! MoveToNextTab()
+  "there is only one window
+  if tabpagenr('$') == 1 && winnr('$') == 1
+    return
+  endif
+  "preparing new window
+  let l:tab_nr = tabpagenr('$')
+  let l:cur_buf = bufnr('%')
+  if tabpagenr() < tab_nr
+    close!
+    if l:tab_nr == tabpagenr('$')
+      tabnext
+    endif
+    sp
+else
+    close!
+    tabnew
+  endif
+  "opening current buffer in new window
+  exe "b".l:cur_buf
+endfunc
+nnoremap mt :call MoveToNextTab()<cr>
+nnoremap mT :call MoveToPrevTab()<cr>
+
+"}}}
 
 " {{{ colorscheme
 set t_Co=256
+set mouse=a
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark="hard"
@@ -329,6 +453,9 @@ let &showbreak = '↪'
 " Show invisibles
 set listchars=tab:▸\ ,eol:¬
 set list
+set ignorecase
+set smartcase
+set incsearch
 "doesn't work in neovim
 set t_ti= t_te=  " Disable the \"clear\" after you close
 
