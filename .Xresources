@@ -27,19 +27,21 @@ URxvt.urgentOnBell:      true
 !URxvt.borderLess:       false
 !URxvt.internalBorder:       0
 !URxvt.externalBorder:       0
-!
+
 ! Extensions
 URxvt.perl-lib:            /usr/lib/urxvt/perl/
 URxvt.perl-ext:	           default,matcher,searchable-scrollback,tabbed,clipboard,selection-to-clipboard,url-select,keyboard-select
 URxvt.keysym.M-u:          perl:url-select:select_next
 URxvt.keysym.M-Escape:     perl:keyboard-select:activate
 URxvt.keysym.M-s:          perl:keyboard-select:search
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 URxvt.url-select.launcher: /usr/bin/qutebrowser --target tab
 !URxvt.iconFile:           utilities-terminal.svg
 URxvt.matcher.button:      1
 ! Catch ugly URLs
 URxvt.cutchars:            '"'()*<>[]{|}
-!
+
 ! Appearance
 URxvt*font: xft:WenQuanYi Micro Hei Mono:pixesize=20,xft:Sauce Code Pro Nerd Font Mono:pixesize=18
 URxvt*boldFont:  xft:WenQuanYi Micro Hei Mono:pixesize=18:minspace=True
@@ -54,8 +56,8 @@ URxvt.underlineColor: #c5f779
 ! Pseudo Transparency
 !URxvt.shading:    10
 !URxvt.transparent:true
-!
-! Zenburn color-scheme
+
+! Zenburn
 URxvt.background:  #3f3f3f
 URxvt.foreground:  #dcdccc
 ! black + red
@@ -89,7 +91,9 @@ URxvt.color15:     #ffffff
 
 !{{{ XTERM
 xterm*inputMethod:ibus
-xtterm*utf8: 2
+xterm*utf8: true 
+xterm*utf8Title:true
+xterm.locale:true
 xterm*internalBorder:        0
 xterm*loginShell:         true
 xterm*scrollBar:         false
@@ -100,12 +104,17 @@ xterm*dynamicColors:        on
 xterm*highlightSelection: true
 xterm*termName:  xterm-256color
 
+!mouse selection to copy, Ctrl-V, also Shift+Insert
+xterm*VT100.Translations: #override \
+	<Btn1Up>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0) \n\
+        Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
 
 ! Appearance
 xterm*renderFont: true
 xterm*faceName: Sauce Code Pro Nerd Font
-xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono Light
+xterm*faceNameDoublesize: WenQuanYi Micro Hei Mono
 xterm*faceSize:12
+xterm*xftAntialias:true
 
 ! Zenburn
 xterm*background:  #3f3f3f
@@ -150,50 +159,7 @@ rofi.color-urgent: #393939, #f3843d, #393939, #268bd2, #ffc39c
 
 ! }}}
 
-!{{{ x11-ssh-askpass
-
-x11-ssh-askpass*font:                   monospace
-x11-ssh-askpass*background:             #000000
-x11-ssh-askpass*foreground:             #ffffff
-x11-ssh-askpass.Button*background:      #000000
-x11-ssh-askpass.Indicator*foreground:   #ff9900
-x11-ssh-askpass.Indicator*background:   #090909
-x11-ssh-askpass*topShadowColor:         #000000
-x11-ssh-askpass*bottomShadowColor:      #000000
-x11-ssh-askpass.*borderWidth:           1
-
-! }}}
-
-!{{{ xmessage
-xmessage*form.okay.shapeStyle: rectangle
-xmessage*form.okay.background: IndianRed
-xmessage*form.okay.foreground: rgb:e/b/b
-xmessage*message*background: ivory3
-xmessage*background: gray85
-xmessage*foreground: gray15
-xmessage*Scrollbar.width: 10
-xmessage*Scrollbar.borderWidth: 1
-xmessage*Text.?.cursorColor: rgb:d/5/5
-xmessage*Text.borderColor: gray65
-xmessage*Text*background: gray95
-xmessage*Command.highlightThickness: 1
-xmessage*Command.internalWidth: 5
-xmessage*Command.internalHeight: 3
-xmessage*Command.borderColor: gray40
-xmessage*Command.shapeStyle: Rectangle
-xmessage*Command.background: gray80
-xmessage*faceName: DejaVuSansMono
-xmessage*faceSize: 12
-xmessage*message.scrollVertical: Always
-xmessage*message.scrollHorizontal: Never
-! add keyboard shortcuts to easily quit program
-xmessage*baseTranslations:#augment\
-        <Key>Return:exit()\n\
-        <Key>space:exit()
-!}}}
-
-
-! --- xcalc {{{1
+! --- xcalc {{{
 ! -----------------------------------------------------------------------------
 xcalc*ti.button1.vertDistance: 4
 xcalc*ti.button2.vertDistance: 4
@@ -238,17 +204,52 @@ xcalc*ti.button37.background: gray95
 xcalc*ti.button38.background: gray95
 xcalc*ti.button39.background: gray95
 
+! }}}
 
-! --- xpdf {{{1
-! -----------------------------------------------------------------------------
-xpdf*initialZoom: page
-xpdf*urlCommand: firefox %s
-xpdf*textEncoding: utf-8
-xpdf*enableFreetype: yes
-xpdf*antialias: yes
-xpdf*viKeys: on
+!{{{ x11-ssh-askpass
+
+x11-ssh-askpass*font:                   monospace
+x11-ssh-askpass*background:             #000000
+x11-ssh-askpass*foreground:             #ffffff
+x11-ssh-askpass.Button*background:      #000000
+x11-ssh-askpass.Indicator*foreground:   #ff9900
+x11-ssh-askpass.Indicator*background:   #090909
+x11-ssh-askpass*topShadowColor:         #000000
+x11-ssh-askpass*bottomShadowColor:      #000000
+x11-ssh-askpass.*borderWidth:           1
+
+! }}}
+
+!{{{ xmessage
+xmessage*form.okay.shapeStyle: rectangle
+xmessage*form.okay.background: IndianRed
+xmessage*form.okay.foreground: rgb:e/b/b
+xmessage*message*background: ivory3
+xmessage*background: gray85
+xmessage*foreground: gray15
+xmessage*Scrollbar.width: 10
+xmessage*Scrollbar.borderWidth: 1
+xmessage*Text.?.cursorColor: rgb:d/5/5
+xmessage*Text.borderColor: gray65
+xmessage*Text*background: gray95
+xmessage*Command.highlightThickness: 1
+xmessage*Command.internalWidth: 5
+xmessage*Command.internalHeight: 3
+xmessage*Command.borderColor: gray40
+xmessage*Command.shapeStyle: Rectangle
+xmessage*Command.background: gray80
+xmessage*faceName: DejaVuSansMono
+xmessage*faceSize: 12
+xmessage*message.scrollVertical: Always
+xmessage*message.scrollHorizontal: Never
+! add keyboard shortcuts to easily quit program
+xmessage*baseTranslations:#augment\
+        <Key>Return:exit()\n\
+        <Key>space:exit()
+! }}}
 
 
-! --- gv {{{1
+! --- gv {{{
 ! -----------------------------------------------------------------------------
 gv*antialias: true
+! }}}

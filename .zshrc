@@ -81,7 +81,7 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="mm/dd/yyyy"
 
 # Plugins to load
-plugins=(git)
+plugins=(git autojump)
 source $ZSH/oh-my-zsh.sh
 
 # Prompt elements
@@ -96,6 +96,8 @@ alias ll='colorls -la'
 alias vi='vim'
 alias svi='sudo vim'
 alias grep='grep --color=auto'
+alias search='pacman -Ss'
+alias update='sudo pacman -Syu'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -Rcn'
 alias upgrade='sudo pacman -Syu'

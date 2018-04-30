@@ -1,66 +1,214 @@
-
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" {{{ colorstheme 
+" looking {{{
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
+
 " }}}
 
-"{{{ editor 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'ervandew/supertab'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-repeat'
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-surround'
-
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
-" }}}
-
-" file manager
+" navigation{{{
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-"{{{ bar status 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-"}}}
-
-
-" Visualize and traverse your undo tree
-Plug 'sjl/gundo.vim'
-"shows a git diff in the 'gutter' (sign column) 
-Plug 'airblade/vim-gitgutter'
-" A buffer/file/mru/tag explorer with fuzzy text matching
+Plug 'wesleyche/SrcExpl'
+Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
-
-" language support
-" {{{ LaTeX 
-Plug 'lervag/vimtex'
-Plug 'LaTeX-Box-Team/LaTeX-Box'
 " }}} 
 
-" {{{ Markdown syntax highlighting for Vim	
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" completion/templating {{{
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'roxma/nvim-completion-manager'
+if !has('nvim')
+Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 " }}}
 
+" command extention {{{ 
+
+Plug 'easymotion/vim-easymotion'
+Plug 'junegunn/vim-easy-align'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+
+" }}}
+
+" language support {{{
+
+" html/css {{{
+Plug 'mattn/emmet-vim'
+" }}}
+
+" c/c++
+Plug 'roxma/ncm-clang'
+Plug 'Rip-Rip/clang_complete'
+" java
+Plug 'artur-shaik/vim-javacomplete2'
+
+" python {{{
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'davidhalter/jedi-vim'
+Plug 'hynek/vim-python-pep8-indent'
+
+" }}}
+
+"php {{{
+" should install composer
+Plug 'phpactor/phpactor', {'do': 'composer install'}
+Plug 'roxma/ncm-phpactor'
+"}}}
+
+" syntax checking {{{
+Plug 'w0rp/ale'
+
+" }}}
+
+" documentation {{{
+" LaTeX 
+Plug 'lervag/vimtex'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+
+" Markdown syntax highlighting for Vim	
+Plug 'godlygeek/tabular'
+Plug 'gabrielelana/vim-markdown'
+Plug 'rhysd/nyaovim-markdown-preview'
+
+" }}}
+
+" utils{{{
+
+Plug 'sjl/gundo.vim'
+" paste
+Plug 'vim-scripts/YankRing.vim'
+" scratchpad
+Plug 'metakirby5/codi.vim'
+
+" }}}
+
+" misc {{{
+Plug 'kassio/neoterm'
+Plug 'janko-m/vim-test'
+Plug 'tpope/vim-dispatch'
+" }}}
 
 " Initialize plugin system
 call plug#end()
 
-
 "---package configuration---
 
-" gundo{{{
-":GundoToggle
+" nvim completion manager {{{
+let g:python3_host_prog="python3"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"}}}
+" UltiSnips with ncm {{{
+"
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+inoremap <silent> <C-Space> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+let g:UltiSnipsEditSplit='vertical'
+"let g:UltiSnipsSnippetsDir=["UltiSnips"]
+" }}}
+
+" ncm_clang {{{
+autocmd BufEnter *.cpp,*.h,*.hpp,*.hxx let g:ale_cpp_clang_options = join(ncm_clang#compilation_info()['args'], ' ')
+
+" }}}
+
+" clang_complete {{{
+let g:clang_library_path='/lib/libclang.so.6.0'
+" default key mapping is annoying
+    let g:clang_make_default_keymappings = 0
+    " ncm-clang is auto detecting compile_commands.json and .clang_complete
+    " file
+    let g:clang_auto_user_options = ''
+
+    func WrapClangGoTo()
+        let cwd = getcwd()
+        let info = ncm_clang#compilation_info()
+        exec 'cd ' . info['directory']
+        try
+            let b:clang_user_options = join(info['args'], ' ')
+            call g:ClangGotoDeclaration()
+        catch
+        endtry
+        " restore
+        exec 'cd ' . cwd
+    endfunc
+
+    " map to gd key
+    autocmd FileType c,cpp nnoremap <buffer> gd :call WrapClangGoTo()<CR>
+"}}}
+
+" jedi-vim {{{
+let g:jedi#auto_initialization = 1
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<Leader>d"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = ""
+let g:jedi#rename_command = "<leader>r"
+
+" }}}
+
+" ALE {{{ 
+"let g:ale_sign_error = '✖'
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" (optional, for completion performance) run linters only when I save files
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
+
+let g:ale_linters = {
+			\ 'html': ['HTMLHint'], 
+			\ 'javascript': ['eslint'], 
+			\ 'css': ['csslint'], 
+			\ 'python': ['flake8'],
+			\ 'cpp':["clang"]
+			\ }
+let g:ale_fixers = {
+			\ 'javascript': ['prettier'], 
+			\ 'scss': ['stylelint'], 
+			\ 'python': ['yapf', 'isort']
+			\ }
+let g:ale_python_flake8_args = '--ignore=E501'
+
+noremap <leader>f :ALEFix<cr>
 
 " }}}
 
@@ -89,64 +237,77 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_working_path_mode = 'ra'
 "}}}
 
+" {{{ markdown
+nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
+" }}}
+
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+" neoterm{{{
+"let g:neoterm_size = 15
+"" }}}
+"
+"" vim-test{{
+"let g:test#strategy = 'neoterm'
+"let g:test#preserve_screen = 1
+"
+"nmap <silent> <leader>f :TestNearest<CR>
+"nmap <silent> <leader>i :TestFile<CR>
+"nmap <silent> <leader>a :TestSuite<CR>
+"nmap <silent> <leader>l :TestLast<CR>
+"nmap <silent> <leader>g :TestVisit<CR>
+"
+"let test#python#pytest#options = {
+"  \ 'nearest': '-v',
+"  \ 'file':    '-v',
+"  \ 'suite':   '-v',
+"\}
+
+" }}
+
 " airline {{{
 let g:airline_powerline_fonts = 1
 let g:airline_theme="zenburn"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
 " unicode symbols
 let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
 
 " }}}
 
-"syntastic {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" nerdtree {{{ 
+let g:nerdtree_tabs_open_on_console_startup = 1
+let NERDChristmasTree=1
+let NERDTreeShowHidden=0
+let NERDTreeQuitOnOpen=1 
+let NERDTreeShowBookmarks=1 
+let NERDTreeDirArrows=1 
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn','\.bzr']
+"map <F8> :NERDTreeToggle<CR>
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_jump = 1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
+nnoremap tp :tabprev<CR>
+nnoremap tn :tabnext<CR>
+nnoremap tf :tabfirst<CR>
+nnoremap tl :tablast<CR>
 
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_php_checkers = ['php']
-" }}}
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <C-k> :bn<cr>
+map <C-j> :bp<cr>
 
-" Ultisnips {{{
-let g:UltiSnipsExpandTrigger = '<TAB>'
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit='vertical'
-let g:UltiSnipsSnippetsDir=$HOME.'/.vim/plugged/vim-snippets/UltiSnips'
-
-" }}}
-
-"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-
-" {{{ markdown
-nmap <leader>md :%! ~/.vim/bin/Markdown.pl --html4tags <cr>
 " }}}
 
 " {{{ colorscheme
+set t_Co=256
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark="hard"
@@ -157,12 +318,34 @@ filetype on
 filetype plugin indent on
 syntax on
 
+set nowritebackup
+set noswapfile
+set nobackup
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1  "encoding dectection
 set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 set history=5000
 set wrap
 let &showbreak = '↪'
+" Show invisibles
+set listchars=tab:▸\ ,eol:¬
+set list
+"doesn't work in neovim
 set t_ti= t_te=  " Disable the \"clear\" after you close
+
+" Tab completion in command mode
+set wildmenu
+set wildmode=full
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.pdf
+set wildignore+=*.dat
+set wildignore+=*.o,*.so
+set wildignore+=*.pyc
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store?
+set wildignore+=venv
+set wildignore+=*.fits,*.hdf5,*.h5
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
