@@ -82,6 +82,7 @@ Plug 'hynek/vim-python-pep8-indent'
 
 "php {{{
 " should install composer
+" http://kushellig.de/neovim-php-ide/
 Plug 'phpactor/phpactor', {'do': 'composer install'}
 Plug 'roxma/ncm-phpactor'
 "}}}
@@ -118,6 +119,7 @@ Plug 'tpope/vim-dispatch'
 " Testing Vimscript with Vader.vim
 Plug 'junegunn/vader.vim'
 Plug 'thinca/vim-quickrun'
+Plug 'aperezdc/vim-template'
 " }}}
 
 " Initialize plugin system
@@ -130,7 +132,8 @@ call plug#end()
 " }}}
 
 " nvim completion manager {{{
-let g:python3_host_prog="python3"
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog="/usr/bin/python3"
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "}}}
@@ -175,7 +178,14 @@ let g:clang_library_path='/lib/libclang.so.6.0'
     " map to gd key
     autocmd FileType c,cpp nnoremap <buffer> gd :call WrapClangGoTo()<CR>
 "}}}
-
+" nerdcommenter {{{
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" }}}
 " Quickrun Setting
 let g:quickrun_config = {
             \   "_" : {
