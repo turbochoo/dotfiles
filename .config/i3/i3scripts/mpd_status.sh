@@ -6,9 +6,9 @@
 # Distributed under terms of the MIT license.
 #
 
-playing=⏸
- paused=⏵
-stopped=♪
+playing=
+paused=
+stopped=
 
 status=$(mpc status | sed -n 's/^\[\([^])]*\)\].*$/\1/p')
 case $status in
