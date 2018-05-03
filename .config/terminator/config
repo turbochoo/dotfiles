@@ -42,28 +42,28 @@
       ratio = 0.503736920777
       type = HPaned
     [[[terminal3]]]
-      command=sudo iftop
+      command = sudo iftop
       order = 0
       parent = child2
       profile = default
       type = Terminal
       uuid = 886e8773-ab34-40ba-88ac-76e6cca27fb8
     [[[terminal4]]]
-      command=htop
+      command = htop
       order = 1
       parent = child2
       profile = default
       type = Terminal
       uuid = ba7c5e57-6aa9-4919-ab52-3fb5ae187474
     [[[terminal6]]]
-      command=ydcv
+      command = ydcv
       order = 0
       parent = child5
       profile = default
       type = Terminal
       uuid = f97d9918-755c-427c-a174-598444aea68f
     [[[terminal7]]]
-      command=ranger
+      command = ranger
       order = 1
       parent = child5
       profile = default
@@ -74,5 +74,6 @@
   [[default]]
     cursor_color = "#aaaaaa"
     font = WenQuanYi Micro Hei 10
+    scrollback_lines = 5000
   [[box]]
     cursor_color = "#aaaaaa"
