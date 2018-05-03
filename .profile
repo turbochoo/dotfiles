@@ -4,5 +4,6 @@ export npm_config_prefix=~/.node_modules
 export CC=clang
 export CXX=clang++
 export TERM="xterm-256color"
+export EDITOR=vim
 export ANDROID_HOME=/opt/android-sdk
 
