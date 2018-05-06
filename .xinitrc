@@ -2,8 +2,7 @@
 
 export LANG=en_US.UTF-8
 export LC_CTYPE=zh_CN.UTF-8
-# fix emacs ibus input issue
-export LANGUAGE=zh_CN:en_US
+#export LANGUAGE=zh_CN:en_US
 
 export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE="ibus"
