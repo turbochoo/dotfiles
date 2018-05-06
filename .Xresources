@@ -8,8 +8,6 @@ Xft.rgba:      rgb
 Xft.dpi:       96
 
 !}}}
-
-
 !{{{ URXVT
 ! tab keyboard shortcuts :ctrl place to where, shift switch tab
 ! General
@@ -248,6 +246,16 @@ xmessage*baseTranslations:#augment\
         <Key>space:exit()
 ! }}}
 
+!{{{ XCLIPBOARD
+xclipboard.geometry:	  287x195+1000+400
+XClipboard*international: true
+XClipboard*font:   	  xft:Inconsolata:size=15
+XClipboard*borderColor:	  #3F3F3F
+XClipboard*cursorColor:	  Gray93
+XClipboard*Foreground:    #F0DFAF
+XClipboard*Background:    #3F3F3F
+XClipboard*form.*.shapeStyle: rectangle
+!}}}
 
 ! --- gv {{{
 ! -----------------------------------------------------------------------------

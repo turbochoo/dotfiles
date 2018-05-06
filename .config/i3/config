@@ -215,7 +215,7 @@ for_window [class="electronic-wechat|shadowsocks-qt5"] floating enable, border n
 for_window [class="Google-chrome|Chromium|Geany"] stacking, border none
 for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
-for_window [class="xpad|Blueman-manager|Lxappearance"] floating enable
+for_window [class="XClipboard|xpad|Blueman-manager|Lxappearance"] floating enable
 for_window [class="MPlayer|smplayer|Remmina|Stardict"] floating enable, border none
 for_window [class="feh|imv|Peek|Cheese|Zeal"] floating enable, border none
 for_window [class="Terminator"] border none
@@ -325,8 +325,6 @@ bar {
 
 #{{{ auto start
 
-#exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
-exec --no-startup-id gpaste-client ui
 exec --no-startup-id compton -bcf -i 0.8
 exec --no-startup-id /usr/bin/stardict
 exec --no-startup-id /usr/bin/xpad
@@ -338,5 +336,5 @@ exec --no-startup-id /usr/bin/terminator --layout=box
 exec --no-startup-id /usr/bin/blueman-applet
 exec --no-startup-id /usr/bin/electronic-wechat
 exec --no-startup-id /usr/bin/mpd ~/.config/mpd/mpd.conf
-
+exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
 # }}}

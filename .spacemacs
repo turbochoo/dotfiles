@@ -31,8 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-	 company-mode
-	 auctex
 	 c-c++
 	 lua
      php
@@ -61,7 +59,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+		vue-mode
+	)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -140,7 +140,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 15
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -331,7 +331,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode lua-mode less-css-mode htmlize helm-css-scss haml-mode gnuplot gh-md emmet-mode disaster company-web web-completion-data company-c-headers cmake-mode clang-format phpunit phpcbf php-extras php-auto-yasnippets yasnippet drupal-mode php-mode ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib which-key undo-tree hydra async aggressive-indent adaptive-wrap ace-window avy evil-unimpaired f s dash))))
+    (vue-mode edit-indirect ssass-mode vue-html-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download mmm-mode markdown-toc markdown-mode lua-mode less-css-mode htmlize helm-css-scss haml-mode gnuplot gh-md emmet-mode disaster company-web web-completion-data company-c-headers cmake-mode clang-format phpunit phpcbf php-extras php-auto-yasnippets yasnippet drupal-mode php-mode ws-butler winum volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib which-key undo-tree hydra async aggressive-indent adaptive-wrap ace-window avy evil-unimpaired f s dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
