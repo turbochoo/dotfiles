@@ -437,7 +437,7 @@ nnoremap mT :call MoveToPrevTab()<cr>
 
 " {{{ colorscheme
 set t_Co=256
-set mouse=a
+"set mouse=a
 set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark="hard"
