@@ -216,7 +216,7 @@ for_window [class="Google-chrome|Chromium|Geany"] stacking, border none
 for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
 for_window [class="XClipboard|xpad|Blueman-manager|Lxappearance"] floating enable
-for_window [class="Peek|Cheese|Zeal|Remmina|Stardict"] floating enable, border none
+for_window [class="Peek|Cheese|Zeal|Remmina"] floating enable, border none
 for_window [class="feh|Vimiv|MPlayer|Mpv"] floating enable, border none
 for_window [class="Terminator"] border none
 
@@ -326,7 +326,6 @@ bar {
 #{{{ auto start
 
 exec --no-startup-id compton -bcf -i 0.8
-exec --no-startup-id /usr/bin/stardict
 exec --no-startup-id /usr/bin/xpad
 exec --no-startup-id /usr/bin/urxvtd -q -f -o
 exec --no-startup-id $SCRIPTDIR/wallpaper &
