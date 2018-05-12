@@ -8,4 +8,7 @@ export ANDROID_HOME=/opt/android-sdk
 export GOROOT=/usr/lib/go
 export GOPATH=$HOME/projects/go
 
+export JAVA_HOME=/usr/lib/jvm/default
+export JDK_HOME=$JAVA_HOME
+
 export PATH=$HOME/.node_modules/bin:$HOME/utils:${GOPATH//://bin:}:$HOME/.gem/ruby/2.5.0/bin:/usr/local/bin:$PATH
