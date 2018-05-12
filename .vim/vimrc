@@ -16,7 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'wesleyche/SrcExpl'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagar'
 Plug 'kien/ctrlp.vim'
 " }}} 
 
@@ -192,6 +192,7 @@ let g:quickrun_config = {
             \       "outputter" : "error",
             \       "outputter/error/success"   : "buffer",
             \       "outputter/error/error"     : "quickfix",
+			\		'outputter/buffer/split':   ':30vsplit',
             \       "outputter/buffer/close_on_empty" : 1,
             \       "hook/time/enable" : 1
             \   },
@@ -232,6 +233,7 @@ let g:jedi#rename_command = "<leader>r"
 let g:ale_sign_error = '✘'
 let g:ale_sign_warning = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 " (optional, for completion performance) run linters only when I save files
 let g:ale_lint_on_enter = 0
