@@ -185,7 +185,7 @@ bindsym Print exec scrot -u -e 'mv $f ~/Pictures/scrot'
 bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/scrot'
 
 #XF86WLAN
-bindsym XF86Tools exec --no-startup-id xterm -e "sudo wifi-menu wlp3s0"
+bindsym XF86Tools exec --no-startup-id xterm -e "sudo wifi-menu"
 # Enter normal mode
 bindsym Insert mode "normal"
 
