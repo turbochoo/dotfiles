@@ -42,14 +42,14 @@
       ratio = 0.503736920777
       type = HPaned
     [[[terminal3]]]
-      command = sudo iftop
+      command = 
       order = 0
       parent = child2
       profile = default
       type = Terminal
       uuid = 886e8773-ab34-40ba-88ac-76e6cca27fb8
     [[[terminal4]]]
-      command = htop
+      command = 
       order = 1
       parent = child2
       profile = default
