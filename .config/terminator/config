@@ -41,14 +41,14 @@
       ratio = 0.50067294751
       type = VPaned
     [[[terminal2]]]
-	  command="ranger"
+      command = ranger
       order = 0
       parent = child1
       profile = default
       type = Terminal
       uuid = 8683cd5a-2974-4e56-baf3-f97eb9d14db2
     [[[terminal3]]]
-	  command="ydcv"
+      command = ydcv
       order = 1
       parent = child1
       profile = default
