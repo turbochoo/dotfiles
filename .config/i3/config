@@ -333,7 +333,7 @@ exec --no-startup-id xautolock -time 5 -locker $SCRIPTDIR/exit lock &
 exec --no-startup-id sudo netctl start wlp3s0-Topway_6E4240
 exec --no-startup-id /usr/bin/terminator --layout=box
 # exec --no-startup-id /usr/bin/blueman-applet
-exec --no-startup-id /usr/bin/electronic-wechat
+#exec --no-startup-id /usr/bin/electronic-wechat
 exec --no-startup-id /usr/bin/mpd ~/.config/mpd/mpd.conf
 exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
 # }}}
