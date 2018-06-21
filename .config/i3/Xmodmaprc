@@ -6,3 +6,7 @@ remove Control = Control_L
 keysym Caps_Lock = Control_L
 add Lock = Caps_Lock
 add Control = Control_L
+!Prior
+keycode 112=Left
+!Next
+keycode 117=Right
