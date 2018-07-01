@@ -16,5 +16,7 @@ export CLASSPATH=.:$JAVA_HOME/lib
 export M2_HOME=/opt/maven
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xms256m -Xmx512m"
+#gradle调试gradle gradleDebug
+export GRADLE_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
 
 export PATH=$HOME/.node_modules/bin:$HOME/utils:${GOPATH//://bin:}:$HOME/.gem/ruby/2.5.0/bin:/usr/local/bin:$PATH
