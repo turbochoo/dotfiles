@@ -16,7 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'wesleyche/SrcExpl'
-Plug 'majutsushi/tagar'
+Plug 'git://github.com/majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 " }}} 
 
