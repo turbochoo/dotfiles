@@ -1,7 +1,0 @@
-terminal_size = 80x24
-console_position = +0+0
-window_tiling = yes
-always_tile = yes
-
-clusters=sxweb sxuser sxpay sxcrj sxjg sxhz sxza sxkf
-
