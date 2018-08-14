@@ -205,14 +205,15 @@ bindsym Insert mode "normal"
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
 for_window [window_role="dialog"] floating enable
 for_window [window_role="menu"] floating enable
-for_window [window_role=".*Setting.*|.*Preference.*"] floating enable,border none
-for_window [class="ROOT"] floating enable
+for_window [window_role="About"] floating enable
+for_window [window_role="app"] floating enable
 
 for_window [class="Urxvt|XTerm|Termite|XCalc|XFontSel"] floating enable, border none
 for_window [class="Remarkable|shadowsocks-qt5|wicd-client.py|Wicd Network Manager"] floating enable, border none
-for_window [class="Google-chrome|Chromium"] stacking,tabbed, border none
+for_window [class="Google-chrome|Chromium|jetbrains-idea"] stacking,tabbed, border none
 for_window [class="Ddd" instance="^(?!command_shell$)"] floating enable
 for_window [class="Min"] focus child, layout stacking, focus
 for_window [class="XClipboard|xpad|Blueman-manager|Lxappearance"] floating enable
@@ -220,6 +221,11 @@ for_window [class="Peek|Cheese|Zeal|Remmina"] floating enable, border none
 for_window [class="feh|Vimiv|MPlayer|gl|mpv"] floating enable, border none
 for_window [class="Terminator"] border none
 for_window [class="Geany"] border none
+
+#cssh
+for_window [class="Cssh"] floating enable
+for_window [title="^CLUSTERSSH: .*"] floating enable
+for_window [class="DialogBox"] floating enable
 
 # always open some programs on specified workspace
 assign [class="Terminator"]  $ws1
