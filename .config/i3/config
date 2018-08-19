@@ -179,6 +179,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10  # decrease screen brightn
 # start dmenu (a program launcher) rofi
 bindsym XF86LaunchA exec --no-startup-id rofi -show window
 bindsym XF86Search exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+bindsym Home exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' 
 bindsym XF86Explorer exec --no-startup-id termite
 
 bindsym Print exec scrot -u -e 'mv $f ~/Pictures/scrot'
@@ -231,8 +232,8 @@ for_window [class="DialogBox"] floating enable
 assign [class="Terminator"]  $ws1
 assign [class="qutebrowser"]  $ws2
 assign [class="Chromium|Google-chrome"]  $ws3
-assign [class="Remmina|xpad"]  $ws9
-assign [class="Gpaste-ui|electronic-wechat|Shadowsocks-Qt5|TelegramDesktop"] $ws0
+#assign [class="Remmina"]  $ws9
+assign [class="TelegramDesktop"] $ws0
 # }}}
 
 
@@ -346,6 +347,7 @@ exec --no-startup-id /usr/bin/blueman-applet
 exec --no-startup-id /usr/bin/mpd ~/.config/mpd/mpd.conf
 exec --no-startup-id /usr/bin/xmodmap ~/.config/i3/Xmodmaprc
 exec --no-startup-id /usr/bin/terminator --layout=box
+exec --no-startup-id "sh -c 'exec ~/utils/greenclip daemon'"
 exec --no-startup-id "sh -c 'sleep 2; exec urxvtc'"
 exec --no-startup-id "sh -c 'sleep 10; exec ss-qt5'"
 exec --no-startup-id "sh -c 'sleep 20; exec qutebrowser'"
