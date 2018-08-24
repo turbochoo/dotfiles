@@ -139,7 +139,7 @@ xterm*color15:     #ffffff
 
 ! {{{ ROFI Color theme
 
-rofi.modi:                           run,drun,ssh,window
+rofi.modi:                           window,run,drun,ssh
 rofi.sidebar-mode:                   true
 rofi.terminal:                       termite
 rofi.ssh-client:                     ssh
