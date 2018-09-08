@@ -102,6 +102,9 @@ alias upgrade='sudo pacman -Syu'
 alias findProc='ps -ef | grep '
 alias docker='sudo docker '
 alias cls='printf "\033c"'
+alias UNZIP="-O CP936"
+alias ZIPINFO="-O CP936" 
+
 #set -xe
 #alias for cnpm
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
